@@ -1,5 +1,6 @@
 from collections import Counter
 import random
+import json
 
 class Board:
     def __init__(self):
@@ -89,8 +90,9 @@ class Menace:
             matchbox=self.matchBoxes[board]
             del matchbox[matchbox.index(bead)]
         self.numLose+=1
+        
     def length(self):
-        print(len(self.matchBoxes))
+        return (len(self.matchBoxes))
 
     
 class Human:
@@ -176,10 +178,32 @@ if __name__=='__main__':
     menaceFirst=Menace()
     menaceSecond=Menace()
     human=Human()
-    for i in range(1000):
-        playGame(menaceFirst,menaceSecond,silent=True)
-    #m = Menace()
-    menaceFirst.length()
+
+    print("Input 1 for continuing with the trained model otherwise press 0")
+    n = int(input())
+
+    if n==0:
+        for i in range(100000):
+            playGame(menaceFirst,menaceSecond,silent=True)
+     
+        state1 = menaceFirst.length()
+        state2 = menaceSecond.length()
+        
+        if state1>=state2:
+            with open('states.json', 'w') as f:
+                json.dump(menaceFirst.matchBoxes, f, sort_keys=False, indent=4)
+
+        else:
+            with open('states.json', 'w') as f:
+                json.dump(menaceSecond.matchBoxes, f, sort_keys=False, indent=4)
+
+        playGame(menaceFirst,human)
+
+    elif n==1:
+        menaceTrained = Menace()
+        with open('states.json', 'r') as f:
+            menaceTrained.matchBoxes = json.load(f)
+        playGame(menaceTrained,human)
+
+
     
-    playGame(menaceFirst,human)
-    playGame(human,menaceSecond)
