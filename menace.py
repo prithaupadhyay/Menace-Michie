@@ -1,3 +1,8 @@
+#Submitted By: 
+# 201651024(Kirtika Singhal), 
+# 201651045(Roshni Ram),
+# 201651058(Pritha Upadhyay)
+
 from collections import Counter
 import random
 import json
