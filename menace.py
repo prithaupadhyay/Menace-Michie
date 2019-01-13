@@ -54,30 +54,37 @@ class Board:
     
 class Menace:
     def __init__(self):
-        self.matchBoxes = {}
+        #empty dictionary of matchboxes to store states during the games
+        self.matchBoxes = {}      
+        #initializing the number of wins, loses and draws of menace
         self.numWin=0
         self.numLose=0
         self.numDraw=0
     
+    #initialising the list of all the moves played by menace
     def startGame(self):
         self.movesPlayed=[]
 
-    def getMove(self, board):              #to get the possible moves to be played by menace
-        #we need to check if the current state of the board is present in the matchboxes dictionary or not, else we'll add that state in the matchbox dictionary
+     #to get the possible moves to be played by menace
+    #we need to check if the current state of the board is present in the matchboxes dictionary or not, else we'll add that state in the matchbox dictionary
 
-        board=board.boardString()        #to get the current state of the board from the board string function and store it in the board variable
+    def getMove(self, board):       
+        #to get the current state of the board from the board string function and store it in the board variable      
+        board=board.boardString()      
 
-        
         if board not in self.matchBoxes:
-            newBeads=[pos for pos,mark in enumerate(board) if mark==" "] #new beads denotes the possible positions to play
+            #new beads denotes the possible positions to play
+            newBeads=[pos for pos,mark in enumerate(board) if mark==" "] 
             #suppose red color denotes 4th position, if 4th is empty then it will be present in new beads. Now, we want proper selection, we'll amplify the number of possible play move. ie: increase the number of red beads in that particular matchbox.
             self.matchBoxes[board]=newBeads * ((len(newBeads)+2)//2)
 
         beads=self.matchBoxes[board]
 
+        #if  there are beads in the matchbox, ie: when no move is preferred in that state.
+        #we gave punishment for every mistake and if it continues, it will turn to 0
         if len(beads):
             bead=random.choice(beads)
-            self.movesPlayed.append((board,bead))      # moves played by menace
+            self.movesPlayed.append((board,bead))      
         else:
             bead=-1
         return bead
