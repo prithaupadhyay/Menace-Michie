@@ -3,24 +3,30 @@ import random
 import json
 
 class Board:
-    def __init__(self):
+    #constructor to make the board empty everytime
+    def __init__(self):                          
         self.board=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
-    def __str__(self):
+    #to display the board positions and corresponding status
+    def __str__(self):                   
         return("\n 0 || 1 || 2 \t %s || %s || %s \n 3 || 4 || 5\t %s || %s || %s \n 6 || 7 || 8\t %s || %s || %s " % (self.board[0], self.board[1], self.board[2], self.board[3], self.board[4], self.board[5], self.board[6], self.board[7], self.board[8]))
 
-    def validMoves(self,move):
-        try:                                #typecast the entered move is an integer 
+    #to check if the entered move is valid or not
+    def validMoves(self,move):              
+        try:                                #typecast the entered move as an integer 
             move=int(move)
         except ValueError:
             return False
 
-        if 0<=move<=8 and self.board[move]==" ":
+    #check if the entered move is empty or not
+        if 0<=move<=8 and self.board[move]==" ":       
             return True
         return False
 
-    def winCondition(self):                          # to get the winCondition condition
-        return ((self.board[0] != ' ' and
+     # to get the winCondition condition
+    def winCondition(self):                         
+         #3 cases when 0 is non-empty, when 4 is non-empty or when 8 is non-empty
+        return ((self.board[0] != ' ' and            
                  ((self.board[0] == self.board[1] == self.board[2]) or
                   (self.board[0] == self.board[3] == self.board[6]) or
                   (self.board[0] == self.board[4] == self.board[8])))
