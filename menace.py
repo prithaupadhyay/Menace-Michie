@@ -130,6 +130,7 @@ class Human:
             
         return int(move)
 
+    #to print the results of the games
     def ifWin(self):
         print("Human Won")
         
@@ -140,6 +141,7 @@ class Human:
         print("Human Lost the game")
         
 
+#function to play game
 def playGame(first, second, silent=False):
     first.startGame()
     second.startGame()
@@ -200,6 +202,7 @@ if __name__=='__main__':
     print("Input 1 for continuing with the trained model otherwise press 0")
     n = int(input())
 
+    #if the user selected not to use trained model, then train it for 100000 matches
     if n==0:
         for i in range(100000):
             playGame(menaceFirst,menaceSecond,silent=True)
@@ -217,6 +220,7 @@ if __name__=='__main__':
 
         playGame(menaceFirst,human)
 
+    #if the user selects to use the trained model, fetch it from the json file
     elif n==1:
         menaceTrained = Menace()
         with open('states.json', 'r') as f:
