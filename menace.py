@@ -19,7 +19,7 @@ class Board:
             return True
         return False
 
-    def winning(self):                          # to get the winning condition
+    def winCondition(self):                          # to get the winCondition condition
         return ((self.board[0] != ' ' and
                  ((self.board[0] == self.board[1] == self.board[2]) or
                   (self.board[0] == self.board[3] == self.board[6]) or
@@ -144,7 +144,7 @@ def playGame(first, second, silent=False):
 
         if not silent:
             print(board)
-        if board.winning():
+        if board.winCondition():
             first.ifWin()
             second.ifLose()
             break
@@ -167,7 +167,7 @@ def playGame(first, second, silent=False):
 
         if not silent:
             print(board)
-        if board.winning():
+        if board.winCondition():
             second.ifWin()
             first.ifLose()
             break
