@@ -211,10 +211,12 @@ if __name__=='__main__':
         state2 = menaceSecond.length()
         
         if state1>=state2:
+            print("Number of states ",state1)
             with open('states.json', 'w') as f:
                 json.dump(menaceFirst.matchBoxes, f, sort_keys=False, indent=4)
 
         else:
+            print("Number of states ",state2)
             with open('states.json', 'w') as f:
                 json.dump(menaceSecond.matchBoxes, f, sort_keys=False, indent=4)
 
@@ -225,6 +227,7 @@ if __name__=='__main__':
         menaceTrained = Menace()
         with open('states.json', 'r') as f:
             menaceTrained.matchBoxes = json.load(f)
+        print("Number of states ",menaceTrained.length())
         playGame(menaceTrained,human)
 
 
