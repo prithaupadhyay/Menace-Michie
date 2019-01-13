@@ -38,14 +38,17 @@ class Board:
                     ((self.board[2] == self.board[5] == self.board[8]) or
                     (self.board[6] == self.board[7] == self.board[8]))))    
 
-    def drawCondition(self):                             # draw the board after every move
+    #to get the draw condition when all the 9 blocks are filled, ie:non-empty
+    def drawCondition(self):                             
         return all((x!=" " for x in self.board))
 
 
-    def playMove(self,position, marker):        # to mark the marker on selection
+    # to place the marker on selected position
+    def playMove(self,position, marker):        
         self.board[position]=marker
 
-    def boardString(self):                           #to append all the played positions in the board
+    #to append all the played positions in the board, keeps the board updated after every move
+    def boardString(self):                          
         return ''.join(self.board)
 
     
