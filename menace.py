@@ -89,24 +89,26 @@ class Menace:
             bead=-1
         return bead
 
+    #if this state gives positive result, add 3 more beads of same
     def ifWin(self):
-        #if this state gives positive result, add 3 more beads of same
         for (board,bead) in self.movesPlayed:
             self.matchBoxes[board].extend([bead,bead,bead])
         self.numWin+=1
 
+    #if this function results true, we just append one bead
     def ifDraw(self):
         for (board,bead) in self.movesPlayed:
             self.matchBoxes[board].append(bead)
         self.numDraw+=1
     
-
+    #if this function returns true, we delete the bead
     def ifLose(self):
         for (board,bead) in self.movesPlayed:
             matchbox=self.matchBoxes[board]
             del matchbox[matchbox.index(bead)]
         self.numLose+=1
         
+    #to count the number of states stored
     def length(self):
         return (len(self.matchBoxes))
 
