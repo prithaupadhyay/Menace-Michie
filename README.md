@@ -1,3 +1,7 @@
+# MENACE
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+
 ### Introduction
 
 MENACE (Matchbox Educable Naught and Crosses Engine) is an unbeatable self-learning Tic-Tac-Toe AI game written in python proposed
